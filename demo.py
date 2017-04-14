@@ -39,12 +39,16 @@ def train(x, t, V, W, bv, bw):
     Z = np.tanh(A)
 
     B = np.dot(Z, W) + bw
+    # prediction result
     Y = sigmoid(B)
+    
+    # ---------------------------------------
 
     # backward
+    # calculating deltas 
     Ew = Y - t
     Ev = tanh_prime(A) * np.dot(W, Ew)
-
+    # calculating gradients
     dW = np.outer(Z, Ew)
     dV = np.outer(x, Ev)
 
